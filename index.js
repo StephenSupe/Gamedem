@@ -78,15 +78,3 @@ hit()
 
 
 
-// let boxPosition = {x:0, y:0}
-// document.addEventListener('keydown', (e) => {
-// if(e.key == 'ArrowLeft') {
-//     boxElement.style.left = '0px'
-//     //box.Position.x+=10
-// }
-
-// })
-// //log hello every secon
-// setInterval(() =>{
-//     console.log('hello')
-// },1000)
