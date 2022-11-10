@@ -3,8 +3,10 @@ let boxElement = document.getElementById('box')
 let dvdElement = document.getElementById('dvd')
 let totalCount = document.getElementById('count')
 let lifeCount = document.getElementById('lives')
+let message = document.getElementById('message')
+let intervalId; 
 let boxPosition = { x: 0, y: 0 }
-let dvdPosition = { x: 100, y: 100, dx: 3, dy: 5 }
+let dvdPosition = { x: 100, y: 100, dx: 2, dy: 3 }
 let count = 0;
 totalCount.innerHTML = `Total Count: ${count}`
 let lives = 3;
@@ -16,10 +18,10 @@ document.addEventListener('keydown', (e) => {
     //     boxPosition.x-=10
     // }
     if (e.key == 'ArrowUp') {
-        boxPosition.y -= 10
+        boxPosition.y -= 20
     }
     if (e.key == 'ArrowDown') {
-        boxPosition.y += 10
+        boxPosition.y += 20
     }
     // if(e.key == 'ArrowRight'){
     //     boxPosition.x+=10
@@ -61,7 +63,7 @@ const frame = () => {
     dvdElement.style.top = dvdPosition.y + 'px'
     dvdElement.style.left = dvdPosition.x + 'px'
     // once it hits a certian cordinate we want minus
-    if (dvdPosition.x <= boxPosition.x + 50 && dvdPosition.y >= boxPosition.y && dvdPosition.y <= boxPosition.y + 50) {
+    if (dvdPosition.x <= boxPosition.x + 10 && dvdPosition.y >= boxPosition.y && dvdPosition.y <= boxPosition.y + 50) {
         hit()
     }
 
@@ -77,17 +79,21 @@ const frame = () => {
     const endGame = () => {
         if (count === 3) {
             console.log('you win!');
+            clearInterval(intervalId);
+            message.textContent = 'You Win!';
         }  
         if (lives === 0) {
             console.log('you lose!');
+            clearInterval(intervalId);
+            message.textContent = 'You Lose!';
            }
         }
-
+ intervalId = setInterval(frame, 5)
 //     // if count = 3, console.log "You win!"; stop the movement
 //     // if lives = 0, console.log "You lose!"; stop the movement
 // }
 // let boxX =  boxPosition.x+50;
 //Make condition for when dvd coordinates equal box coordinates
 // animation
-setInterval(frame, 60)
+
 // setInterval(hit, 60)
